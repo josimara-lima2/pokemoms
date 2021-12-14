@@ -42,7 +42,7 @@ useEffect(() => {
           {!isloading && pokemonList.results !== undefined &&
            pokemonList.results.map((pokemon,index) => (
             <TableRow key={index}>
-              <TableCell>{pokemon.name}</TableCell>
+              <TableCell >{pokemon.name}</TableCell>
               <TableCell>{pokemon.url}</TableCell>
               <TableCell>{pokemon.id}</TableCell>
              

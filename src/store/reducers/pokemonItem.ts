@@ -2,7 +2,7 @@
 /* eslint-disable @typescript-eslint/no-unused-expressions */
 /* eslint-disable no-sequences */
 import api from "../../services/api";
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from "../rootReducer";
 
 
@@ -47,7 +47,7 @@ const PokemonItemSlice = createSlice({
   name: "Pokemon",
   initialState,
   reducers: {
-     
+  
   },
   extraReducers(builder) {
     builder.addCase(fetchApiItem.pending, (state) => {

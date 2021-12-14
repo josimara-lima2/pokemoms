@@ -9,22 +9,6 @@ import  { PokemonItem,fetchApiItem, pokemonItemSelector } from '../store/reducer
 import { useEffect } from 'react';
 import { pokemonSelector , fetchApi} from '../store/reducers/pokemon';
 
-// Generate Sales Data
-function createData(time: string, amount?: number) {
-  return { time, amount };
-}
-
-const data = [
-  createData('00:00', 0),
-  createData('03:00', 300),
-  createData('06:00', 600),
-  createData('09:00', 800),
-  createData('12:00', 1500),
-  createData('15:00', 2000),
-  createData('18:00', 2400),
-  createData('21:00', 2400),
-  createData('24:00', undefined),
-];
 
 const maior_experience = (list:PokemonItem[]) =>{
   let experiencia = 0
@@ -39,36 +23,28 @@ const maior_experience = (list:PokemonItem[]) =>{
 
 export default function Chart() {
   const theme = useTheme();
+  let indice = 1
   const dispatch = UseAppDispatch()
   const {pokemon,isloadingItem} = UseAppSelector(pokemonItemSelector)
   const {pokemonList,isloading} = UseAppSelector(pokemonSelector)
   
   const list:PokemonItem[]= [] 
-  if(!isloading && pokemonList.results !== undefined){
-  const tam = pokemonList.results.length
- 
- 
 
-  if(!isloadingItem && pokemon !== undefined){
-    list.push(pokemon)
-    console.log(list)
+  if(!isloading && pokemonList.results !== undefined ){
+   
+     
   
   }
-}
-  useEffect(()=>{
+   
 
+
+
+
+  useEffect(()=>{
     dispatch(fetchApi())
-    dispatch(fetchApiItem(2))
-    
   },[dispatch])
 
   
-
-  
-
-
-
-
   
   return (
     <React.Fragment>
