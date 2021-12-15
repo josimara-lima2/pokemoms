@@ -1,5 +1,5 @@
 import charizard from './charizard.png'
-import bulbasaur from './charizard.png'
+import bulbasaur from './bulbasaur.png'
 
 
 const imgs = [bulbasaur, charizard]

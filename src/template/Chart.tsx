@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable no-const-assign */
 /* eslint-disable array-callback-return */
 /* eslint-disable @typescript-eslint/no-unused-vars */
@@ -12,6 +13,7 @@ import {
 
 import Typography from "@mui/material/Typography";
 import imgs from '../images/imgs'
+import { useEffect } from "react";
 const maior_experience = (list: PokemonItem[]) => {
   let data: PokemonItem = {
     base_experience: 0,
@@ -31,23 +33,35 @@ export default function Chart() {
  
 
   const { pokemon, isloadingItem } = UseAppSelector(pokemonItemSelector);
-  let indice = 0
-  let list: PokemonItem = {
-    base_experience: 0,
-    height: 0,
-    forms: [{ name: "", url: "" }],
-    id: 0,
-  };
 
-  if (!isloadingItem && pokemon !== undefined) {
-    list = maior_experience(pokemon);
   
+  let indice = -1
+const initial =  {
+  base_experience: 0,
+  height: 0,
+  forms: [{ name: "", url: "" }],
+  id: 0,
+} as PokemonItem;
+let list = initial
+
+if (!isloadingItem && pokemon !== undefined) {
+  list = maior_experience(pokemon);
+
+  if(list.forms[0].name !== ''){
   imgs.map((img,index) => {
-    if(img === list.forms[0].name){
+    let nameString = img.split('.')
+    let names = nameString[0].split('/')
+    let namePokemon = names[3]
+    
+    if(list.forms[0].name ===namePokemon){
       indice = index
+      
     }
   })
 }
+
+}
+
   return (
     <React.Fragment>
       <Title>Maior experiencia</Title>
@@ -56,7 +70,7 @@ export default function Chart() {
         {list.forms[0].name}
       </Typography>
       <Typography component="p" variant="h5">
-      {<img width="70px" src={imgs[indice]} alt="tetse" />}
+      {indice>=0 && <img width="70px" src={imgs[indice]} alt="tetse" />}
       </Typography>
       <div>
         <Typography component="p" variant="h5">
