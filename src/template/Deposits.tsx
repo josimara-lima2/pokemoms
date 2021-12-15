@@ -2,19 +2,17 @@
 import * as React from 'react';
 import Typography from '@mui/material/Typography';
 import Title from './Title';
-import { UseAppDispatch, UseAppSelector } from '../store';
-import { useEffect } from 'react';
+import  {UseAppSelector } from '../store';
+
 import { pokemonItemSelector } from '../store/reducers/pokemonItem';
 
 
 
 export default function Quantidade() {
   const data = new Date()
-  const dispatch = UseAppDispatch()
+  
   const {pokemon} = UseAppSelector(pokemonItemSelector)
-  useEffect(()=>{
-   
-  },[dispatch])
+ 
   return (
     <React.Fragment>
       <Title>Quantidade de pokemons</Title>

@@ -2,7 +2,7 @@
 /* eslint-disable array-callback-return */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import * as React from "react";
-import { useTheme } from "@mui/material/styles";
+
 import Title from "./Title";
 import { UseAppSelector } from "../store";
 import {
@@ -29,7 +29,7 @@ const maior_experience = (list: PokemonItem[]) => {
 };
 
 export default function Chart() {
-  const theme = useTheme();
+ 
 
   const { pokemon, isloadingItem } = UseAppSelector(pokemonItemSelector);
 
