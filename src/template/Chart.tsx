@@ -11,8 +11,7 @@ import {
 } from "../store/reducers/pokemonItem";
 
 import Typography from "@mui/material/Typography";
-import charizard from "../images/charizard.png";
-
+import imgs from '../images/imgs'
 const maior_experience = (list: PokemonItem[]) => {
   let data: PokemonItem = {
     base_experience: 0,
@@ -32,7 +31,7 @@ export default function Chart() {
  
 
   const { pokemon, isloadingItem } = UseAppSelector(pokemonItemSelector);
-
+  let indice = 0
   let list: PokemonItem = {
     base_experience: 0,
     height: 0,
@@ -42,8 +41,13 @@ export default function Chart() {
 
   if (!isloadingItem && pokemon !== undefined) {
     list = maior_experience(pokemon);
-  }
-
+  
+  imgs.map((img,index) => {
+    if(img === list.forms[0].name){
+      indice = index
+    }
+  })
+}
   return (
     <React.Fragment>
       <Title>Maior experiencia</Title>
@@ -51,8 +55,8 @@ export default function Chart() {
       <Typography component="p" variant="h5">
         {list.forms[0].name}
       </Typography>
-      <Typography>
-        {<img width="40px" src={charizard} alt="charizard" />}
+      <Typography component="p" variant="h5">
+      {<img width="70px" src={imgs[indice]} alt="tetse" />}
       </Typography>
       <div>
         <Typography component="p" variant="h5">

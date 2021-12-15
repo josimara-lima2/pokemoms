@@ -18,7 +18,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 
 import { mainListItems}  from './ListItems';
-import  VerticalTabs from  './ListItems';
+import { MenuPopupState} from  './ListItems';
 import Chart from './Chart';
 import Deposits from './Deposits';
 import Orders from './Orders';
@@ -149,7 +149,7 @@ function DashboardContent() {
           <Divider />
           <List>{mainListItems}</List>
           <Divider />
-          <List>{<VerticalTabs/>}</List>
+          <List>{<MenuPopupState/>}</List>
 
         </Drawer>
         <Box
