@@ -2,7 +2,7 @@
 /* eslint-disable @typescript-eslint/no-unused-expressions */
 /* eslint-disable no-sequences */
 import api from "../../services/api";
-import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice} from "@reduxjs/toolkit";
 import { RootState } from "../rootReducer";
 
 
@@ -15,13 +15,13 @@ interface Pokemon {
 
 export interface PokemonItem {
     base_experience: number;
-    forms:Pokemon;
+    forms:Pokemon[];
     id:number;
     height:number;
 }
 
 interface PokemonItemState{
-    pokemon: PokemonItem;
+    pokemon: PokemonItem[];
     isloadingItem:boolean;
   
 }
@@ -29,7 +29,7 @@ interface PokemonItemState{
 
 
 const initialState = {
-  pokemon: {},
+  pokemon: [],
   isloadingItem:false,
   
 } as PokemonItemState;
@@ -37,9 +37,14 @@ const initialState = {
 
 
 
-export const fetchApiItem = createAsyncThunk(`pokemon/fetchApiItem`, async (id:number) => {
-  const response = await api.get(`pokemon/${id}/`);
-  return response.data as PokemonItem;
+export const fetchApiItem = createAsyncThunk(`pokemon/fetchApiItem`, async (id:number[]) => {
+  let pok :PokemonItem[] = []
+  for(let i=0; i<=id.length-1; i++){
+    let pokItem =await api.get(`pokemon/${id[i]}/`);
+    pok.push(pokItem.data as PokemonItem)
+  }
+  
+  return pok
 });
 
 
@@ -63,6 +68,6 @@ const PokemonItemSlice = createSlice({
   },
 });
 
-export const {} = PokemonItemSlice.actions
+
 export const pokemonItemSelector = (state:RootState) => state.pokemon
 export default PokemonItemSlice.reducer;

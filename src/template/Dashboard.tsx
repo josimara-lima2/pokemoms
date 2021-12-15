@@ -9,15 +9,16 @@ import List from '@mui/material/List';
 import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
-import Badge from '@mui/material/Badge';
+
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
 import Link from '@mui/material/Link';
 import MenuIcon from '@mui/icons-material/Menu';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
-import NotificationsIcon from '@mui/icons-material/Notifications';
-import { mainListItems, secondaryListItems } from './ListItems';
+
+import { mainListItems}  from './ListItems';
+import  VerticalTabs from  './ListItems';
 import Chart from './Chart';
 import Deposits from './Deposits';
 import Orders from './Orders';
@@ -26,7 +27,7 @@ function Copyright(props: any) {
   return (
     <Typography variant="body2" color="text.secondary" align="center" {...props}>
       {'Copyright © '}
-      <Link color="inherit" href="https://mui.com/">
+      <Link color="inherit" href="https://pokeapi.co/">
         Pokemons
       </Link>{' '}
       {new Date().getFullYear()}
@@ -128,11 +129,7 @@ function DashboardContent() {
             >
               Pokemons
             </Typography>
-            <IconButton color="inherit">
-              <Badge badgeContent={4} color="secondary">
-                <NotificationsIcon />
-              </Badge>
-            </IconButton>
+            
           </Toolbar>
         </AppBar>
         <Drawer variant="permanent" open={open}>
@@ -152,7 +149,7 @@ function DashboardContent() {
           <Divider />
           <List>{mainListItems}</List>
           <Divider />
-          <List>{secondaryListItems}</List>
+          <List>{<VerticalTabs/>}</List>
 
         </Drawer>
         <Box
