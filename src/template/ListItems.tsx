@@ -15,7 +15,7 @@ export const mainListItems = (
   <div>
     
     <Link href="#" sx={{ textDecoration: "none", color: "#000c" }}>
-    <ListItem button>
+    <ListItem button >
       <ListItemIcon>
         <DashboardIcon />
       </ListItemIcon>
@@ -43,7 +43,7 @@ export  function MenuPopupState() {
   return (
    
     <div>
-     <ListSubheader>Contatos</ListSubheader>
+     <ListSubheader sx={{backgroundColor: "#e0bf6c"}}>Contatos</ListSubheader>
       <ListItem button>
     <ListItemIcon>
     <GitHubIcon />

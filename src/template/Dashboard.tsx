@@ -3,7 +3,6 @@ import {
   styled,
   createTheme,
   ThemeProvider,
-  Theme,
 } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import MuiDrawer from "@mui/material/Drawer";
@@ -21,19 +20,17 @@ import Paper from "@mui/material/Paper";
 import Link from "@mui/material/Link";
 import MenuIcon from "@mui/icons-material/Menu";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
-import Switch from "@mui/material/Switch";
 import { mainListItems } from "./ListItems";
 import { MenuPopupState } from "./ListItems";
 import Chart from "./Chart";
 import Deposits from "./Deposits";
 import Orders from "./Orders";
-import FormControlLabel from "@mui/material/FormControlLabel";
 
 function Copyright(props: any) {
   return (
     <Typography
       variant="body2"
-      color="text.secondary"
+     
       align="center"
       {...props}
     >
@@ -57,6 +54,7 @@ const AppBar = styled(MuiAppBar, {
   shouldForwardProp: (prop) => prop !== "open",
 })<AppBarProps>(({ theme, open }) => ({
   zIndex: theme.zIndex.drawer + 1,
+
   transition: theme.transitions.create(["width", "margin"], {
     easing: theme.transitions.easing.sharp,
     duration: theme.transitions.duration.leavingScreen,
@@ -78,6 +76,7 @@ const Drawer = styled(MuiDrawer, {
     position: "relative",
     whiteSpace: "nowrap",
     width: drawerWidth,
+    backgroundColor: "#e0bf6c",
 
     transition: theme.transitions.create("width", {
       easing: theme.transitions.easing.sharp,
@@ -123,14 +122,15 @@ function DashboardContent() {
     mdTheme.palette.mode === "light" ? "#f57c00" : "#FFF";
   return (
     <ThemeProvider theme={mdTheme}>
-      <Box sx={{ display: "flex" }}>
+      <Box sx={{ display: "flex"}}>
         <CssBaseline />
-        <AppBar position="absolute" open={open}>
+        <AppBar  position="absolute" open={open}  >
           <Toolbar
             sx={{
               pr: "24px", // keep right padding when drawer closed
               backgroundColor: "#DAA520",
               color: "#FFF",
+              
             }}
           >
             <IconButton
@@ -140,6 +140,7 @@ function DashboardContent() {
               sx={{
                 marginRight: "36px",
                 ...(open && { display: "none" }),
+                
               }}
             >
               <MenuIcon />
@@ -160,14 +161,15 @@ function DashboardContent() {
             </IconButton>
           </Toolbar>
         </AppBar>
-        <Drawer variant="permanent" open={open}>
+        <Drawer variant="permanent" open={open} >
           <Toolbar
             sx={{
               display: "flex",
               alignItems: "center",
               justifyContent: "flex-end",
               px: [1],
-              color: colorTema(),
+             
+            
             }}
           >
             <IconButton onClick={toggleDrawer}>
@@ -175,9 +177,9 @@ function DashboardContent() {
             </IconButton>
           </Toolbar>
           <Divider />
-          <List>{mainListItems}</List>
-          <Divider />
-          <List>{<MenuPopupState />}</List>
+          <List   >{mainListItems}</List>
+          <Divider  />
+          <List >{<MenuPopupState />}</List>
         </Drawer>
         <Box
           component="main"
@@ -239,7 +241,7 @@ function DashboardContent() {
                 </Paper>
               </Grid>
             </Grid>
-            <Copyright sx={{ pt: 4 }} />
+            <Copyright color={colorTema} sx={{ pt: 4 }} />
           </Container>
         </Box>
       </Box>

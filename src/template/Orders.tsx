@@ -36,7 +36,7 @@ export default function Orders({c}:Props) {
   
   useEffect(() => {
     dispatch(fetchApiItem(list));
-  }, [dispatch,c]);
+  }, [dispatch]);
 
   const deletePok = (idPok: number) => {
     dispatch(deletePokemon({ idPok }));
