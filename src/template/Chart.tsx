@@ -13,6 +13,7 @@ import {
 
 import Typography from "@mui/material/Typography";
 import imgs from '../images/imgs'
+import imgExtra from '../images/imgExtra.png'
 import { useEffect } from "react";
 const maior_experience = (list: PokemonItem[]) => {
   let data: PokemonItem = {
@@ -66,14 +67,15 @@ if (!isloadingItem && pokemon !== undefined) {
     <React.Fragment>
       <Title>Maior experiencia</Title>
 
-      <Typography component="p" variant="h5">
+      <Typography component="p" variant="h5" >
         {list.forms[0].name}
       </Typography>
       <Typography component="p" variant="h5">
       {indice>=0 && <img width="70px" src={imgs[indice]} alt="tetse" />}
+      {!isloadingItem && indice === -1 &&  <Typography  component="p" variant="body2"><img width="70px" src={imgExtra} alt="tetse" /> <p>Esse pokemon ainda não foi fotografado por esse site!</p></Typography>}
       </Typography>
       <div>
-        <Typography component="p" variant="h5">
+        <Typography component="p" variant="body1">
           {list.base_experience}
         </Typography>
       </div>

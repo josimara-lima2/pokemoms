@@ -20,7 +20,7 @@ export default function Quantidade() {
         {pokemon !== undefined && pokemon.length}
       </Typography>
      <div>
-     <Typography color="text.secondary" sx={{ flex: 1 , marginTop:'25px'}}>
+     <Typography sx={{ flex: 1 , marginTop:'25px'}}>
        {data.toLocaleString()}
       </Typography>
      </div>

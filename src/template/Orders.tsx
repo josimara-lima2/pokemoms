@@ -1,57 +1,92 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import * as React from 'react';
+import * as React from "react";
 
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
-import TableHead from '@mui/material/TableHead';
-import TableRow from '@mui/material/TableRow';
-import Title from './Title';
-import { UseAppDispatch, UseAppSelector } from '../store';
-import { useEffect } from 'react';
-import { fetchApiItem, pokemonItemSelector } from '../store/reducers/pokemonItem';
+import Table from "@mui/material/Table";
+import TableBody from "@mui/material/TableBody";
+import TableCell, { tableCellClasses } from "@mui/material/TableCell";
+import TableHead from "@mui/material/TableHead";
+import TableRow from "@mui/material/TableRow";
+import Title from "./Title";
+import { UseAppDispatch, UseAppSelector } from "../store";
+import { useEffect } from "react";
+import {
+  fetchApiItem,
+  pokemonItemSelector,
+  deletePokemon,
+} from "../store/reducers/pokemonItem";
+import DeleteIcon from "@mui/icons-material/Delete";
+import { Box, IconButton } from "@mui/material";
+import { createTheme,ThemeProvider } from "@mui/material/styles";
+import styled from "@mui/material/styles/styled";
+import { type } from "os";
 
 
+export const list = [
+  1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21,
+];
 
-export const list =[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21]
+type Props ={
+  c:boolean
+}
 
+export default function Orders({c}:Props) {
+  const dispatch = UseAppDispatch();
+  const cor = !c ? '#000' : '#FFF'
+  const { pokemon, isloadingItem } = UseAppSelector(pokemonItemSelector);
+  
+  useEffect(() => {
+    dispatch(fetchApiItem(list));
+  }, [dispatch,c]);
 
-export default function Orders() {
+  const deletePok = (idPok: number) => {
+    dispatch(deletePokemon({ idPok }));
+  };
 
-const dispatch = UseAppDispatch()
-const {pokemon,isloadingItem} = UseAppSelector(pokemonItemSelector)
-useEffect(() => {
-    dispatch(fetchApiItem(list))
-    
-},[dispatch])
+  const StyleTableCell = styled(TableCell)(({theme}) =>({
+   
+      color: cor
+  
+}));
 
+const StyleTableRow = styled(TableCell)(({theme}) =>({
+  
+   color: cor
+
+}));
 
   return (
-    <React.Fragment>
-      <Title>Lista de Pokemons</Title>
-      <Table size="small">
-        <TableHead>
-          <TableRow>
-            <TableCell>Name</TableCell>
-            <TableCell>Url</TableCell>
-            <TableCell >Base_experience</TableCell>
-            <TableCell >id</TableCell>
+    
+    <Box >
+    <Title>Lista de Pokemons</Title>
+      <Table size="small" >
+        <TableHead >
+          <TableRow sx={{color:cor}}>
+            <StyleTableCell >Name</StyleTableCell>
+            <StyleTableCell>Url</StyleTableCell>
+            <StyleTableCell>Base_experience</StyleTableCell>
+            <StyleTableCell>id</StyleTableCell>
+            <StyleTableCell></StyleTableCell>
           </TableRow>
         </TableHead>
-        <TableBody>
-          {!isloadingItem && pokemon !== undefined &&
-           pokemon.map((pokemon,index) => (
-            <TableRow key={index}>
-              <TableCell >{pokemon.forms[0].name}</TableCell>
-              <TableCell>{pokemon.forms[0].url}</TableCell>
-              <TableCell>{pokemon.base_experience}</TableCell>
-              <TableCell>{pokemon.id}</TableCell>
-             
-            </TableRow>
-          ))}
+        <TableBody >
+          {!isloadingItem &&
+            pokemon !== undefined &&
+            pokemon.map((pokemon, index) => (
+              <TableRow key={index}>
+                <StyleTableCell>{pokemon.forms[0].name}</StyleTableCell>
+                <StyleTableCell>{pokemon.forms[0].url}</StyleTableCell>
+                <StyleTableCell>{pokemon.base_experience}</StyleTableCell>
+                <StyleTableCell>{pokemon.id}</StyleTableCell>
+                <StyleTableCell>
+                  <IconButton  onClick={()=>deletePok(pokemon.id)}>
+                    <DeleteIcon sx={{color:cor}}/>
+                  </IconButton>
+                </StyleTableCell>
+              </TableRow>
+            ))}
         </TableBody>
       </Table>
-     
-    </React.Fragment>
+    </Box>
+  
   );
 }
