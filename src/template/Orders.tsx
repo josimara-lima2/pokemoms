@@ -15,10 +15,12 @@ import {
   deletePokemon,
 } from "../store/reducers/pokemonItem";
 import DeleteIcon from "@mui/icons-material/Delete";
-import { Box, IconButton } from "@mui/material";
+import { Box, IconButton, Popper } from "@mui/material";
 import { createTheme,ThemeProvider } from "@mui/material/styles";
 import styled from "@mui/material/styles/styled";
 import { type } from "os";
+import { useState } from "react";
+import Button from "@mui/material/Button";
 
 
 export const list = [
@@ -33,6 +35,7 @@ export default function Orders({c}:Props) {
   const dispatch = UseAppDispatch();
   const cor = !c ? '#000' : '#FFF'
   const { pokemon, isloadingItem } = UseAppSelector(pokemonItemSelector);
+
   
   useEffect(() => {
     dispatch(fetchApiItem(list));
@@ -40,20 +43,20 @@ export default function Orders({c}:Props) {
 
   const deletePok = (idPok: number) => {
     dispatch(deletePokemon({ idPok }));
+   
   };
 
-  const StyleTableCell = styled(TableCell)(({theme}) =>({
-   
-      color: cor
+  const StyleTableCell = styled(TableCell)(({ theme }) => ({
+    color: cor,
+  }));
+
+  const StyleTableRow = styled(TableCell)(({ theme }) => ({
+    color: cor,
+  }));
+
   
-}));
 
-const StyleTableRow = styled(TableCell)(({theme}) =>({
-  
-   color: cor
-
-}));
-
+ 
   return (
     
     <Box >
@@ -78,9 +81,10 @@ const StyleTableRow = styled(TableCell)(({theme}) =>({
                 <StyleTableCell>{pokemon.base_experience}</StyleTableCell>
                 <StyleTableCell>{pokemon.id}</StyleTableCell>
                 <StyleTableCell>
-                  <IconButton  onClick={()=>deletePok(pokemon.id)}>
+                  <IconButton  onClick={(e)=>deletePok( pokemon.id)}>
                     <DeleteIcon sx={{color:cor}}/>
                   </IconButton>
+                  
                 </StyleTableCell>
               </TableRow>
             ))}
@@ -90,3 +94,4 @@ const StyleTableRow = styled(TableCell)(({theme}) =>({
   
   );
 }
+

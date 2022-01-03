@@ -106,6 +106,7 @@ function DashboardContent() {
   };
 
   const [checked, setChecked] = React.useState(false);
+  
   const handleClick = () => {
     setChecked(!checked);
     if (!checked === true) {
@@ -119,7 +120,8 @@ function DashboardContent() {
     mdTheme.palette.mode === "light" ? "#f5f5f5" : mdTheme.palette.grey[900];
 
   const colorTema = () =>
-    mdTheme.palette.mode === "light" ? "#f57c00" : "#FFF";
+     mdTheme.palette.mode === "light" ? "#f57c00" : "#FFF";
+     
   return (
     <ThemeProvider theme={mdTheme}>
       <Box sx={{ display: "flex"}}>
